@@ -1,0 +1,70 @@
+server:
+  port: 8080
+  mode: development          # development | production
+  read_timeout: 10s
+  write_timeout: 10s
+  max_header_bytes: 1048576  # 1MB
+
+cors:
+  allowed_origins:
+    - "http://localhost:3000"
+    - "http://localhost:3001"
+    - "https://navishabakery.com"
+  allowed_methods:
+    - "GET"
+    - "POST"
+    - "PUT"
+    - "PATCH"
+    - "DELETE"
+    - "OPTIONS"
+  allowed_headers:
+    - "Authorization"
+    - "Content-Type"
+    - "Idempotency-Key"
+  allow_credentials: true
+  max_age: 3600
+
+rate_limit:
+  global:
+    requests: 100
+    window: 1m
+  contact_form:
+    requests: 5
+    window: 5m
+  auth:
+    requests: 10
+    window: 15m
+
+pagination:
+  default_limit: 20
+  max_limit: 100
+
+image:
+  max_size_bytes: 5242880    # 5MB
+  allowed_types:
+    - "image/jpeg"
+    - "image/png"
+    - "image/webp"
+  max_width: 2000
+  max_height: 2000
+
+menu:
+  categories:
+    - "food"
+    - "beverage"
+    - "cake"
+    - "pastry"
+    - "bread"
+
+contact:
+  duplicate_window: 5m
+
+idempotency:
+  expiry: 24h
+
+jwt:
+  expiry_hours: 1
+
+order:
+  number_prefix: "NV"
+  number_length: 4
