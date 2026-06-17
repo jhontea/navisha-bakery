@@ -1,0 +1,498 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Admin User Management - Navisha Bakery</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Playfair+Display:wght@100..900&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "error-container": "#ffdad6",
+                "on-primary-fixed": "#301400",
+                "on-secondary": "#ffffff",
+                "surface-dim": "#dfd9d1",
+                "primary-container": "#8b5e3c",
+                "outline-variant": "#d5c3b8",
+                "secondary": "#884d5c",
+                "error": "#ba1a1a",
+                "on-primary-fixed-variant": "#653d1e",
+                "surface-variant": "#e8e1da",
+                "primary-fixed": "#ffdcc5",
+                "on-tertiary-fixed-variant": "#5a4300",
+                "surface-container-lowest": "#ffffff",
+                "outline": "#83746b",
+                "on-tertiary-fixed": "#251a00",
+                "gold-500": "#FFC726",
+                "surface-card": "#FFFFFF",
+                "on-background": "#1e1b17",
+                "background": "#fff8f1",
+                "inverse-primary": "#f4bb92",
+                "inverse-on-surface": "#f7f0e8",
+                "primary-fixed-dim": "#f4bb92",
+                "on-error-container": "#93000a",
+                "on-surface": "#1e1b17",
+                "tertiary": "#654c00",
+                "tertiary-fixed-dim": "#f6bf1a",
+                "surface-container": "#f4ede5",
+                "terracotta-500": "#D4421E",
+                "tertiary-fixed": "#ffdf98",
+                "secondary-container": "#feb2c3",
+                "cream-500": "#FFB733",
+                "surface-tint": "#805533",
+                "on-secondary-container": "#7a4150",
+                "primary": "#6f4627",
+                "on-primary-container": "#ffe3d1",
+                "on-tertiary": "#ffffff",
+                "on-tertiary-container": "#ffe5ae",
+                "on-secondary-fixed-variant": "#6c3644",
+                "tertiary-container": "#836300",
+                "on-surface-variant": "#51443c",
+                "inverse-surface": "#33302b",
+                "surface-container-highest": "#e8e1da",
+                "brown-900": "#1A110A",
+                "secondary-fixed": "#ffd9e0",
+                "surface": "#fff8f1",
+                "on-primary": "#ffffff",
+                "surface-container-low": "#f9f3eb",
+                "surface-bright": "#fff8f1",
+                "secondary-fixed-dim": "#feb2c3",
+                "on-secondary-fixed": "#370b1a",
+                "surface-container-high": "#eee7df",
+                "pastel-pink-500": "#FF406C",
+                "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "fontFamily": {
+                "label-md": ["Inter"],
+                "label-sm": ["Inter"],
+                "headline-xl": ["Playfair Display"],
+                "body-lg": ["Inter"],
+                "headline-lg-mobile": ["Playfair Display"],
+                "headline-md": ["Playfair Display"],
+                "headline-lg": ["Playfair Display"],
+                "body-md": ["Inter"]
+            },
+            "fontSize": {
+                "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                "label-sm": ["12px", {"lineHeight": "1", "fontWeight": "500"}],
+                "headline-xl": ["48px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "headline-lg-mobile": ["28px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #fff8f1;
+            color: #1e1b17;
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .sidebar-active {
+            background-color: #8b5e3c;
+            color: #ffe3d1;
+            border-radius: 0.5rem;
+            font-weight: 700;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #d5c3b8;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="flex min-h-screen overflow-hidden">
+<!-- SideNavBar (Persistent Sidebar) -->
+<aside class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-surface-container-low dark:bg-surface-container border-r border-outline-variant p-4 z-50">
+<div class="flex items-center gap-3 mb-8 px-2">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">bakery_dining</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-primary leading-tight">Admin Portal</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-75">Artisanal Control</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1 custom-scrollbar overflow-y-auto">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all font-label-md text-label-md group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all font-label-md text-label-md group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">restaurant_menu</span>
+                Menu Management
+            </a>
+<!-- Active State: Admin Users -->
+<a class="flex items-center gap-3 px-3 py-2 bg-primary-container text-on-primary-container rounded-lg font-bold transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+                Admin Users
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all font-label-md text-label-md group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">contact_support</span>
+                Contact Inquiries
+            </a>
+</nav>
+<div class="mt-auto pt-4 border-t border-outline-variant space-y-1">
+<button class="w-full mb-4 py-2 px-4 bg-primary text-on-primary rounded-lg font-label-md text-label-md shadow-sm hover:scale-98 active:opacity-80 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                Add New Item
+            </button>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all font-label-md text-label-md group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">settings</span>
+                Settings
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all font-label-md text-label-md group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">help</span>
+                Help Center
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 flex flex-col min-h-screen relative overflow-y-auto">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-40 flex justify-between items-center px-6 py-3 w-full bg-surface/90 dark:bg-surface-dim/90 shadow-sm backdrop-blur-md">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 text-body-md focus:ring-2 focus:ring-gold-500 transition-all" placeholder="Search staff or admins..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors duration-200 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-terracotta-500 rounded-full"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors duration-200">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-label-md font-bold text-on-surface">Alex Rivera</p>
+<p class="text-label-sm text-on-surface-variant">Super Admin</p>
+</div>
+<img alt="Admin Profile Avatar" class="w-10 h-10 rounded-full object-cover border-2 border-primary-container" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVLqRfYKY56ByN5OsXyOSiptRuDcfPkusoPw5npP8ET8-kWquPUHFbY49elJE9IPANoObF_PVxtsn017vTaBXco5kZhdu731XvKZQQmXBYVaUzGiedpV3RzkHnGSO2ypTcL8RI96igqvsbLjgTN1KTIj6nDv181AedkjX_9HL6dY-Sye7kGjnCIQlcKATf5AeTmuSTURkSytk07e72-oDkj-zDrSetHITl7ceqKPE6K18SOHEBoE5oTFJ4bqkXNjXkl_pZlb0WlpaT">
+<button class="text-primary font-bold hover:underline transition-all font-body-md">Sign Out</button>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="px-6 py-8 max-w-7xl mx-auto w-full">
+<!-- Hero Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+<div class="space-y-2">
+<h2 class="font-headline-xl text-headline-xl text-primary">Admin Users</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+                        Manage access and permissions for your bakery staff. Ensure the right people have the right tools to keep the hearth warm.
+                    </p>
+</div>
+<button class="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-xl font-label-md text-label-md shadow-md transform hover:-translate-y-1 transition-all active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person_add</span>
+                    Add New Admin
+                </button>
+</div>
+<!-- Stats Overview (Bento Style) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<div class="bg-surface-card p-6 rounded-2xl shadow-sm border border-outline-variant/30 flex flex-col justify-between">
+<span class="material-symbols-outlined text-primary mb-4">group</span>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider">Total Staff</p>
+<h3 class="text-headline-md font-headline-md text-on-surface">24</h3>
+</div>
+</div>
+<div class="bg-surface-card p-6 rounded-2xl shadow-sm border border-outline-variant/30 flex flex-col justify-between">
+<span class="material-symbols-outlined text-tertiary mb-4">verified_user</span>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider">Super Admins</p>
+<h3 class="text-headline-md font-headline-md text-on-surface">4</h3>
+</div>
+</div>
+<div class="bg-surface-card p-6 rounded-2xl shadow-sm border border-outline-variant/30 flex flex-col justify-between">
+<span class="material-symbols-outlined text-gold-500 mb-4">pending_actions</span>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider">Pending Invites</p>
+<h3 class="text-headline-md font-headline-md text-on-surface">3</h3>
+</div>
+</div>
+<div class="bg-surface-card p-6 rounded-2xl shadow-sm border border-outline-variant/30 flex flex-col justify-between">
+<span class="material-symbols-outlined text-secondary mb-4">person_off</span>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider">Inactive</p>
+<h3 class="text-headline-md font-headline-md text-on-surface">2</h3>
+</div>
+</div>
+</div>
+<!-- Filters & Actions -->
+<div class="bg-white rounded-t-3xl border-x border-t border-outline-variant/30 p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="flex items-center bg-surface-container-low p-1 rounded-xl">
+<button class="px-5 py-2 text-label-md font-bold bg-white text-primary rounded-lg shadow-sm">All Users</button>
+<button class="px-5 py-2 text-label-md text-on-surface-variant hover:text-primary transition-colors">Super Admin</button>
+<button class="px-5 py-2 text-label-md text-on-surface-variant hover:text-primary transition-colors">Staff</button>
+</div>
+<div class="flex items-center gap-3 w-full sm:w-auto">
+<button class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 border border-outline-variant rounded-xl text-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+                        More Filters
+                    </button>
+<button class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 border border-outline-variant rounded-xl text-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[20px]">download</span>
+                        Export
+                    </button>
+</div>
+</div>
+<!-- User List Table -->
+<div class="bg-white rounded-b-3xl border border-outline-variant/30 shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low/50 border-b border-outline-variant/20">
+<tr>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Name</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Email</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Role</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Status</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Row 1 -->
+<tr class="hover:bg-background transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<img alt="User Avatar" class="w-10 h-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrGLAzm9COJoTdx0bqRGNm2gnlN7YDczBFz7qJ5X6rcKLsFyJR1RDJH6IrgyOFUFclsOGWGGuHhl2LKgqoQTOtrJPNTHBUIrjXOyDgAWKGOUKfT0vL1EJanO3W3GhD2Tt369kVpHsc_IkFG-BQ81i62V_2CQLxnDanuW_THnFAb58gtwEly-t2ej9Blq_Y_xrh_1vBoRSBo1kbMuNS5KoLj3_zdybR62hIbymMKdlKkMqWchMtfBl51IhxNsyD2QWinS6Sj6MKa3Hb">
+<div>
+<p class="font-bold text-on-surface">Sarah Jenkins</p>
+<p class="text-label-sm text-on-surface-variant">Joined 12 Oct 2023</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-body-md text-on-surface-variant">sarah.j@navishabakery.com</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-primary-container/20 text-primary-container font-label-md text-label-md rounded-full border border-primary-container/30">Super Admin</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 text-green-600">
+<span class="w-2 h-2 bg-green-500 rounded-full"></span>
+<span class="font-label-md text-label-md">Active</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-2 hover:bg-surface-container-high rounded-lg transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-2 hover:bg-error-container/20 rounded-lg transition-colors text-error">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-background transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<img alt="User Avatar" class="w-10 h-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCO8rVExcOdgonLosvOKPJB5ZXguiO0eKuWn7icEEgnNF1w0zR-cIweW-s19H9wrsiL6WIh31i4PS-ELaJihUsZYaCg7msGwJFiGWYt6y7f08Fax-DQiY_GWIVuAFBSaXZVNyRhtr01wiXWiTQSwqR5ScXjpPYm7NNGcrlv8LVRQW9p4I-fOe4PbjYZVij365uF1iXbeqCl-RFKNP_xzZ1w3DCms830Lzm669x2ZDiCodYVjKM51fmsHS6BTMJKwi288Cjp02P6Ohao">
+<div>
+<p class="font-bold text-on-surface">Marcus Thorne</p>
+<p class="text-label-sm text-on-surface-variant">Joined 05 Nov 2023</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-body-md text-on-surface-variant">m.thorne@navishabakery.com</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-secondary-container/20 text-on-secondary-container font-label-md text-label-md rounded-full border border-secondary-container/30">Staff</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 text-green-600">
+<span class="w-2 h-2 bg-green-500 rounded-full"></span>
+<span class="font-label-md text-label-md">Active</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-2 hover:bg-surface-container-high rounded-lg transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-2 hover:bg-error-container/20 rounded-lg transition-colors text-error">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-background transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/30 flex items-center justify-center text-tertiary font-bold">ED</div>
+<div>
+<p class="font-bold text-on-surface">Elena Dubois</p>
+<p class="text-label-sm text-on-surface-variant">Invited 2 days ago</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-body-md text-on-surface-variant">elena.d@navishabakery.com</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-secondary-container/20 text-on-secondary-container font-label-md text-label-md rounded-full border border-secondary-container/30">Staff</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 text-gold-500">
+<span class="w-2 h-2 bg-gold-500 rounded-full animate-pulse"></span>
+<span class="font-label-md text-label-md">Pending</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="text-primary hover:underline font-label-md text-label-md mr-2">Resend Invite</button>
+<button class="p-2 hover:bg-error-container/20 rounded-lg transition-colors text-error">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-background transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<img alt="User Avatar" class="w-10 h-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUC3JJx0FZa0nqk2ZgRkhWK10cXye2Ux8jH9-z2MWcaiLhhPU8z_hZGm9ocpyHP01ADXHugZK9BNyWZxyEwwU-XKPdF_0-RRXqSXgFIVtuaiPkwAckSoxVWf9SJ71IU-_EqupwOESITAMX7jpibTtqVUbuoVSug2WHQS-TjWMNwnil3abffsOKKb_4jUSOSWPjOvcmS9S-8qXalzKrrW--51zPOlT46AELAmJSqHUO56WmArM0BH9QjJ65JJmrhW5MgOPpfgh6yAww">
+<div>
+<p class="font-bold text-on-surface">Chloe Smith</p>
+<p class="text-label-sm text-on-surface-variant">Joined 15 Jan 2024</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-body-md text-on-surface-variant">chloe.s@navishabakery.com</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-secondary-container/20 text-on-secondary-container font-label-md text-label-md rounded-full border border-secondary-container/30">Staff</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 text-green-600">
+<span class="w-2 h-2 bg-green-500 rounded-full"></span>
+<span class="font-label-md text-label-md">Active</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-2 hover:bg-surface-container-high rounded-lg transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-2 hover:bg-error-container/20 rounded-lg transition-colors text-error">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-surface-container-low/30 border-t border-outline-variant/20 flex items-center justify-between">
+<p class="text-label-sm text-on-surface-variant">Showing 1 to 4 of 24 results</p>
+<div class="flex items-center gap-1">
+<button class="p-2 rounded-lg hover:bg-surface-container-high transition-colors text-on-surface-variant disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-primary text-on-primary font-label-md text-label-md">1</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md transition-colors">2</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md transition-colors">3</button>
+<button class="p-2 rounded-lg hover:bg-surface-container-high transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Security Notice Section -->
+<div class="mt-12 bg-primary-container/10 rounded-3xl p-8 flex flex-col md:flex-row items-center gap-8 border border-primary-container/20">
+<div class="flex-shrink-0 w-24 h-24 bg-primary-container rounded-2xl flex items-center justify-center shadow-lg transform rotate-3">
+<span class="material-symbols-outlined text-white text-5xl" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<div class="space-y-3">
+<h4 class="font-headline-md text-headline-md text-primary">Admin Security Protocols</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Adding a new admin will grant them access to sensitive financial and operational data. Please ensure all administrative staff follow our 2FA policies and never share their login credentials. All actions are logged for security auditing.
+                    </p>
+<div class="flex flex-wrap gap-4 pt-2">
+<a class="text-primary font-bold hover:underline flex items-center gap-1" href="#">
+                            Review Security Logs
+                            <span class="material-symbols-outlined text-[18px]">arrow_right_alt</span>
+</a>
+<a class="text-primary font-bold hover:underline flex items-center gap-1" href="#">
+                            Access Control Policy
+                            <span class="material-symbols-outlined text-[18px]">arrow_right_alt</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Decoration -->
+<footer class="mt-auto py-8 text-center opacity-40">
+<p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 Navisha Bakery Admin Panel. Handcrafted Artisanal Software.</p>
+</footer>
+</main>
+<!-- Mobile Bottom Navigation (Visible on mobile only) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface-container-lowest border-t border-outline-variant flex items-center justify-around py-2 px-4 z-50">
+<a class="flex flex-col items-center gap-1 text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-bold">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined">restaurant_menu</span>
+<span class="text-[10px] font-bold">Menu</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary p-2" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="text-[10px] font-bold">Admins</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-bold">Settings</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions and subtle effects
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.style.transform = 'scale(1.002)';
+                row.style.transition = 'all 0.2s ease-out';
+            });
+            row.addEventListener('mouseleave', () => {
+                row.style.transform = 'scale(1)';
+            });
+        });
+
+        // Search bar focus effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('shadow-md');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('shadow-md');
+        });
+    </script>
+</body></html>

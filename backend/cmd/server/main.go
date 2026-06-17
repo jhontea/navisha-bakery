@@ -15,6 +15,9 @@ import (
 	"github.com/navishabakery/backend/internal/cache"
 	"github.com/navishabakery/backend/internal/config"
 	"github.com/navishabakery/backend/internal/database"
+	"github.com/navishabakery/backend/internal/domain/admin"
+	"github.com/navishabakery/backend/internal/domain/auth"
+	appMiddleware "github.com/navishabakery/backend/internal/middleware"
 )
 
 func main() {
@@ -52,19 +55,41 @@ func main() {
 	// Global middleware
 	e.Use(middleware.Recover())
 	e.Use(middleware.Logger())
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins:     cfg.CORS.AllowedOrigins,
+		AllowMethods:     cfg.CORS.AllowedMethods,
+		AllowHeaders:     cfg.CORS.AllowedHeaders,
+		AllowCredentials: cfg.CORS.AllowCredentials,
+	}))
+
+	// Initialize repositories (interfaces)
+	adminRepo := admin.NewRepository(db)
+
+	// Initialize services
+	authService := auth.NewService(adminRepo, cfg)
+
+	// Initialize handlers
+	authHandler := auth.NewHandler(authService)
 
 	// Health check
 	e.GET("/api/health", func(c echo.Context) error {
-		return c.JSON(200, map[string]interface{}{
+		return c.JSON(http.StatusOK, map[string]interface{}{
 			"success": true,
 			"message": "Navisha Bakery API is running",
 			"time":    time.Now().UTC(),
 		})
 	})
 
-	// TODO: Register domain routes here
+	// Auth routes — Admin
+	adminAuth := appMiddleware.AdminAuth(config.GetJWTSecret())
+
+	authGroup := e.Group("/api/admin/auth")
+	authGroup.GET("/google", authHandler.AdminLoginRedirect)
+	authGroup.GET("/google/callback", authHandler.AdminLoginCallback)
+	authGroup.GET("/me", authHandler.AdminMe, adminAuth)
+	authGroup.POST("/logout", authHandler.AdminLogout, adminAuth)
+
 	_ = cacheStore
-	_ = cfg
 
 	// Start server with graceful shutdown
 	go func() {

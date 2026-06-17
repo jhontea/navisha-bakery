@@ -63,7 +63,7 @@ idempotency:
   expiry: 24h
 
 jwt:
-  expiry_hours: 1
+  expiry_hours: 6
 
 order:
   number_prefix: "NV"

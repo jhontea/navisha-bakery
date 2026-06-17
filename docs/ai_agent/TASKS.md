@@ -83,9 +83,9 @@
 - **Priority**: P1
 - **Description**: Create FRONTEND_INSTRUCTIONS.md and BACKEND_INSTRUCTIONS.md for AI agent context
 - **Acceptance Criteria**:
-  - [ ] `docs/ai_agent/FRONTEND_INSTRUCTIONS.md` created
-  - [ ] `docs/ai_agent/BACKEND_INSTRUCTIONS.md` created
-  - [ ] Both files contain project structure, conventions, and patterns
+  - [x] `docs/ai_agent/FRONTEND_INSTRUCTIONS.md` created
+  - [x] `docs/ai_agent/BACKEND_INSTRUCTIONS.md` created
+  - [x] Both files contain project structure, conventions, and patterns
 
 ---
 
@@ -95,70 +95,70 @@
 - **Priority**: P0
 - **Description**: Create admin model and DTOs
 - **Acceptance Criteria**:
-  - [ ] `internal/domain/admin/model.go` — Admin struct matching DB schema
-  - [ ] `internal/domain/admin/dto.go` — CreateAdminRequest, AdminResponse, UpdateAdminRequest
-  - [ ] Validation tags on all DTOs
+  - [x] `internal/domain/admin/model.go` — Admin struct matching DB schema
+  - [x] `internal/domain/admin/dto.go` — CreateAdminRequest, AdminResponse, UpdateAdminRequest
+  - [x] Validation tags on all DTOs
 
 ### B-02: Admin Repository
 - **Priority**: P0
 - **Description**: Admin database operations
 - **Acceptance Criteria**:
-  - [ ] `internal/domain/admin/repository.go`
-  - [ ] `FindByEmail(email)` — used during auth
-  - [ ] `FindByID(id)` — used for JWT validation
-  - [ ] `Create(admin)` — add new admin
-  - [ ] `Delete(id)` — remove admin
-  - [ ] `ListAll()` — list all admins
-  - [ ] All queries use pgx parameterized queries
+  - [x] `internal/domain/admin/repository.go`
+  - [x] `FindByEmail(email)` — used during auth
+  - [x] `FindByID(id)` — used for JWT validation
+  - [x] `Create(admin)` — add new admin
+  - [x] `Delete(id)` — remove admin
+  - [x] `ListAll()` — list all admins
+  - [x] All queries use pgx parameterized queries
 
 ### B-03: Google OAuth Verification Package
 - **Priority**: P0
 - **Description**: Package to verify Google OAuth ID tokens
 - **Acceptance Criteria**:
-  - [ ] `internal/pkg/google/oauth.go`
-  - [ ] Verify ID token using Google's public keys
-  - [ ] Extract email, name, avatar from verified token
-  - [ ] Handle token expiry and invalid tokens
+  - [x] `internal/pkg/google/oauth.go`
+  - [x] Verify ID token using Google's public keys
+  - [x] Extract email, name, avatar from verified token
+  - [x] Handle token expiry and invalid tokens
 
 ### B-04: JWT Package
 - **Priority**: P0
 - **Description**: JWT generation and validation with 1-hour expiry
 - **Acceptance Criteria**:
-  - [ ] `internal/pkg/jwt/jwt.go`
-  - [ ] Generate JWT with claims: sub, email, name, role, type="admin", iat, exp
-  - [ ] Validate JWT and extract claims
-  - [ ] Expiry: 1 hour (configurable from config.yaml)
-  - [ ] Use HS256 with secret from .env
+  - [x] `internal/pkg/jwt/jwt.go`
+  - [x] Generate JWT with claims: sub, email, name, role, type="admin", iat, exp
+  - [x] Validate JWT and extract claims
+  - [x] Expiry: 1 hour (configurable from config.yaml)
+  - [x] Use HS256 with secret from .env
 
 ### B-05: Auth Domain — Service & Handler
 - **Priority**: P0
 - **Description**: Admin authentication endpoints
 - **Acceptance Criteria**:
-  - [ ] `internal/domain/auth/service.go` — `LoginWithGoogle(idToken)` flow
-  - [ ] `internal/domain/auth/handler.go`
-  - [ ] `POST /api/admin/auth/google` — exchange Google token for JWT
-  - [ ] `GET /api/admin/auth/me` — get current admin profile
-  - [ ] `POST /api/admin/auth/logout` — clear JWT cookie
-  - [ ] JWT set as httpOnly, secure, SameSite=Strict cookie
-  - [ ] Non-registered emails return 403 UNAUTHORIZED
+  - [x] `internal/domain/auth/service.go` — `LoginWithGoogle(idToken)` flow
+  - [x] `internal/domain/auth/handler.go`
+  - [x] `POST /api/admin/auth/google` — exchange Google token for JWT
+  - [x] `GET /api/admin/auth/me` — get current admin profile
+  - [x] `POST /api/admin/auth/logout` — clear JWT cookie
+  - [x] JWT set as httpOnly, secure, SameSite=Strict cookie
+  - [x] Non-registered emails return 403 UNAUTHORIZED
 
 ### B-06: Auth Middleware
 - **Priority**: P0
 - **Description**: JWT authentication middleware for Echo
 - **Acceptance Criteria**:
-  - [ ] `internal/middleware/auth.go`
-  - [ ] Extract JWT from cookie or Authorization header
-  - [ ] Validate JWT and inject claims into Echo context
-  - [ ] Separate functions: `AdminAuth()` and `UserAuth()` (Phase 2)
-  - [ ] Return 401 UNAUTHORIZED for invalid/missing tokens
+  - [x] `internal/middleware/auth.go`
+  - [x] Extract JWT from cookie or Authorization header
+  - [x] Validate JWT and inject claims into Echo context
+  - [x] Separate functions: `AdminAuth()` and `UserAuth()` (Phase 2)
+  - [x] Return 401 UNAUTHORIZED for invalid/missing tokens
 
 ### B-07: Seed Super Admin
 - **Priority**: P0
 - **Description**: Create initial super admin record
 - **Acceptance Criteria**:
-  - [ ] Migration or seed script inserts first admin from `SUPER_ADMIN_EMAIL` env
-  - [ ] Role set to `super_admin`
-  - [ ] Only this admin can manage other admins initially
+  - [x] Migration or seed script inserts first admin from `SUPER_ADMIN_EMAIL` env
+  - [x] Role set to `super_admin`
+  - [x] Only this admin can manage other admins initially
 
 ---
 

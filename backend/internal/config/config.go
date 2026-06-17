@@ -29,6 +29,7 @@ func GetDatabaseURL() string         { return os.Getenv("DATABASE_URL") }
 func GetJWTSecret() string           { return os.Getenv("JWT_SECRET") }
 func GetGoogleClientID() string      { return os.Getenv("GOOGLE_CLIENT_ID") }
 func GetGoogleClientSecret() string  { return os.Getenv("GOOGLE_CLIENT_SECRET") }
+func GetGoogleRedirectURL() string   { return os.Getenv("GOOGLE_REDIRECT_URL") }
 func GetRedisURL() string            { return os.Getenv("REDIS_URL") }
 func GetR2AccountID() string         { return os.Getenv("R2_ACCOUNT_ID") }
 func GetR2AccessKey() string         { return os.Getenv("R2_ACCESS_KEY_ID") }
