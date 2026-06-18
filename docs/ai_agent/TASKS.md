@@ -360,32 +360,32 @@
 - **Priority**: P0
 - **Description**: Root layout with fonts, metadata, Google OAuth provider
 - **Acceptance Criteria**:
-  - [ ] `app/layout.tsx` — root layout
-  - [ ] Playfair Display + Inter fonts loaded via `next/font`
-  - [ ] Google OAuth provider wrapping the app
-  - [ ] Global metadata (title, description, OG tags)
+  - [x] `app/layout.tsx` — root layout
+  - [x] Playfair Display + Inter fonts loaded via `next/font`
+  - [x] Google OAuth provider wrapping the app
+  - [x] Global metadata (title, description, OG tags)
 
 ### F-02: Public Layout (Header + Footer)
 - **Priority**: P0
 - **Description**: Layout for public pages with navigation
 - **Acceptance Criteria**:
-  - [ ] `app/(public)/layout.tsx`
-  - [ ] `components/layout/Navbar.tsx` — responsive navbar with logo, nav links
-  - [ ] `components/layout/Footer.tsx` — footer with social links, copyright
-  - [ ] `components/layout/MobileNav.tsx` — mobile hamburger menu or bottom nav
-  - [ ] Active link highlighting
-  - [ ] Logo links to `/`
+  - [x] `app/(public)/layout.tsx`
+  - [x] `components/layout/Navbar.tsx` — responsive navbar with logo, nav links
+  - [x] `components/layout/Footer.tsx` — footer with social links, copyright
+  - [x] `components/layout/MobileNav.tsx` — mobile hamburger menu or bottom nav
+  - [x] Active link highlighting
+  - [x] Logo links to `/`
 
 ### F-03: Dashboard Layout (Sidebar)
 - **Priority**: P0
 - **Description**: Layout for admin dashboard with sidebar
 - **Acceptance Criteria**:
-  - [ ] `app/(dashboard)/layout.tsx`
-  - [ ] `components/dashboard/Sidebar.tsx` — sidebar with nav links
-  - [ ] `components/dashboard/Header.tsx` — top header with user info + logout
-  - [ ] Sidebar links: Dashboard, Menu, Admins, Contacts
-  - [ ] Responsive: sidebar collapses on mobile
-  - [ ] Auth check: redirect to /login if not authenticated
+  - [x] `app/(dashboard)/layout.tsx`
+  - [x] `components/dashboard/Sidebar.tsx` — sidebar with nav links
+  - [x] `components/dashboard/Header.tsx` — top header with user info + logout
+  - [x] Sidebar links: Dashboard, Menu, Admins, Contacts
+  - [x] Responsive: sidebar collapses on mobile
+  - [x] Auth check: redirect to /login if not authenticated
 
 ---
 
