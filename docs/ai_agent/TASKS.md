@@ -395,30 +395,30 @@
 - **Priority**: P0
 - **Description**: Create shared UI primitives with Tailwind
 - **Acceptance Criteria**:
-  - [ ] `components/ui/Button.tsx` — variants: primary, secondary, danger, ghost
-  - [ ] `components/ui/Card.tsx` — card container with hover effect
-  - [ ] `components/ui/Input.tsx` — text input with label + error state
-  - [ ] `components/ui/Modal.tsx` — modal/dialog component
-  - [ ] `components/ui/Badge.tsx` — status badge (available, unavailable, etc.)
-  - [ ] `components/ui/Skeleton.tsx` — loading skeleton
-  - [ ] `components/ui/DataTable.tsx` — table component for dashboard
-  - [ ] `components/ui/ImageUpload.tsx` — file upload with preview
-  - [ ] `components/ui/Pagination.tsx` — page navigation
-  - [ ] `components/ui/Toast.tsx` — success/error notifications
-  - [ ] All components follow warm bakery theme colors
+  - [x] `components/ui/Button.tsx` — variants: primary, secondary, danger, ghost
+  - [x] `components/ui/Card.tsx` — card container with hover effect
+  - [x] `components/ui/Input.tsx` — text input with label + error state
+  - [x] `components/ui/Modal.tsx` — modal/dialog component
+  - [x] `components/ui/Badge.tsx` — status badge (available, unavailable, etc.)
+  - [x] `components/ui/Skeleton.tsx` — loading skeleton
+  - [x] `components/ui/DataTable.tsx` — table component for dashboard
+  - [x] `components/ui/ImageUpload.tsx` — file upload with preview
+  - [x] `components/ui/Pagination.tsx` — page navigation
+  - [x] `components/ui/Toast.tsx` — success/error notifications
+  - [x] All components follow warm bakery theme colors
 
 ### F-05: Utility Functions & Types
 - **Priority**: P0
 - **Description**: Shared utilities and TypeScript types
 - **Acceptance Criteria**:
-  - [ ] `lib/utils.ts` — cn() for class merging, formatCurrency(), formatDate()
-  - [ ] `lib/api.ts` — fetch wrapper with base URL, auth headers, error handling
-  - [ ] `lib/constants.ts` — categories, status labels, etc.
-  - [ ] `lib/validations.ts` — Zod schemas for all forms
-  - [ ] `types/api.ts` — API response types
-  - [ ] `types/menu.ts` — Menu, Category types
-  - [ ] `types/contact.ts` — Contact types
-  - [ ] `types/admin.ts` — Admin types
+  - [x] `lib/utils.ts` — cn() for class merging, formatCurrency(), formatDate()
+  - [x] `lib/api.ts` — fetch wrapper with base URL, auth headers, error handling
+  - [x] `lib/constants.ts` — categories, status labels, etc.
+  - [x] `lib/validations.ts` — Zod schemas for all forms
+  - [x] `types/api.ts` — API response types
+  - [x] `types/menu.ts` — Menu, Category types
+  - [x] `types/contact.ts` — Contact types
+  - [x] `types/admin.ts` — Admin types
 
 ---
 
