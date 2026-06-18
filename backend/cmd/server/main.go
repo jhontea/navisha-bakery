@@ -23,13 +23,11 @@ import (
 )
 
 func main() {
-	// Load configuration
 	cfg, err := config.Load()
 	if err != nil {
 		log.Fatalf("Failed to load config: %v", err)
 	}
 
-	// Connect to PostgreSQL
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
@@ -40,7 +38,6 @@ func main() {
 	defer db.Close()
 	log.Println("Connected to PostgreSQL")
 
-	// Connect to Redis (optional — app works without it)
 	cacheStore, err := cache.NewCache(config.GetRedisURL())
 	if err != nil {
 		log.Printf("Redis unavailable, idempotency and rate limiting will be skipped: %v", err)
@@ -49,7 +46,6 @@ func main() {
 		log.Println("Connected to Redis")
 	}
 
-	// Initialize Echo
 	e := echo.New()
 	e.HideBanner = true
 	e.HidePort = true
@@ -63,6 +59,8 @@ func main() {
 		AllowHeaders:     cfg.CORS.AllowedHeaders,
 		AllowCredentials: cfg.CORS.AllowCredentials,
 	}))
+	e.Use(appMiddleware.SecurityHeaders())
+	e.Use(appMiddleware.RequestLogger())
 
 	// Initialize repositories
 	adminRepo := admin.NewRepository(db)
@@ -88,7 +86,7 @@ func main() {
 		})
 	})
 
-	// Auth routes — Admin
+	// Auth routes
 	adminAuth := appMiddleware.AdminAuth(config.GetJWTSecret())
 
 	authGroup := e.Group("/api/admin/auth")
@@ -105,6 +103,7 @@ func main() {
 	// Admin menu routes (protected)
 	adminMenuGroup := e.Group("/api/admin/menus")
 	adminMenuGroup.Use(adminAuth)
+	adminMenuGroup.Use(appMiddleware.Idempotency(cacheStore))
 	adminMenuGroup.POST("", menuHandler.Create)
 	adminMenuGroup.PUT("/:id", menuHandler.Update)
 	adminMenuGroup.DELETE("/:id", menuHandler.Delete)
@@ -116,6 +115,7 @@ func main() {
 	// Admin contact routes (protected)
 	adminContactGroup := e.Group("/api/admin/contacts")
 	adminContactGroup.Use(adminAuth)
+	adminContactGroup.Use(appMiddleware.Idempotency(cacheStore))
 	adminContactGroup.GET("", contactHandler.List)
 	adminContactGroup.GET("/:id", contactHandler.FindByID)
 	adminContactGroup.PATCH("/:id/read", contactHandler.MarkAsRead)
@@ -124,7 +124,6 @@ func main() {
 
 	_ = cacheStore
 
-	// Start server with graceful shutdown
 	go func() {
 		addr := fmt.Sprintf(":%d", cfg.Server.Port)
 		log.Printf("Server starting on %s (mode: %s)", addr, cfg.Server.Mode)
@@ -133,7 +132,6 @@ func main() {
 		}
 	}()
 
-	// Graceful shutdown
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 	<-quit

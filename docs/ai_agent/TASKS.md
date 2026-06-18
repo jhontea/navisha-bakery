@@ -288,69 +288,69 @@
 - **Priority**: P0
 - **Description**: Idempotency key checker for all write endpoints
 - **Acceptance Criteria**:
-  - [ ] `internal/middleware/idempotency.go`
-  - [ ] Extract `Idempotency-Key` header
-  - [ ] Required on POST, PUT, PATCH, DELETE — return 400 if missing
-  - [ ] Check `idempotency_keys` table for existing key+endpoint
-  - [ ] If found → return cached response (same status + body)
-  - [ ] If not found → proceed, then store result
-  - [ ] Expiry: 24h from config.yaml
+  - [x] `internal/middleware/idempotency.go`
+  - [x] Extract `Idempotency-Key` header
+  - [x] Required on POST, PUT, PATCH, DELETE — return 400 if missing
+  - [x] Check `idempotency_keys` table for existing key+endpoint
+  - [x] If found → return cached response (same status + body)
+  - [x] If not found → proceed, then store result
+  - [x] Expiry: 24h from config.yaml
 
 ### B-20: Rate Limiting Middleware
 - **Priority**: P0
 - **Description**: Per-IP rate limiting
 - **Acceptance Criteria**:
-  - [ ] `internal/middleware/ratelimit.go`
-  - [ ] Global: 100 req/min/IP (configurable)
-  - [ ] Contact form: 5 req/5min/IP
-  - [ ] Auth: 10 req/15min/IP
-  - [ ] Rate limit headers in response (X-RateLimit-Remaining, etc.)
+  - [x] `internal/middleware/ratelimit.go`
+  - [x] Global: 100 req/min/IP (configurable)
+  - [x] Contact form: 5 req/5min/IP
+  - [x] Auth: 10 req/15min/IP
+  - [x] Rate limit headers in response (X-RateLimit-Remaining, etc.)
 
 ### B-21: CORS Middleware
 - **Priority**: P0
 - **Description**: CORS configuration from config.yaml
 - **Acceptance Criteria**:
-  - [ ] `internal/middleware/cors.go`
-  - [ ] Allowed origins from config.yaml
-  - [ ] Allow credentials
-  - [ ] Proper preflight handling
+  - [x] `internal/middleware/cors.go`
+  - [x] Allowed origins from config.yaml
+  - [x] Allow credentials
+  - [x] Proper preflight handling
 
 ### B-22: Security Headers Middleware
 - **Priority**: P1
 - **Description**: Security headers on all responses
 - **Acceptance Criteria**:
-  - [ ] `internal/middleware/security.go`
-  - [ ] X-Content-Type-Options: nosniff
-  - [ ] X-Frame-Options: DENY
-  - [ ] X-XSS-Protection: 1; mode=block
-  - [ ] Strict-Transport-Security (production only)
-  - [ ] Content-Security-Policy
+  - [x] `internal/middleware/security.go`
+  - [x] X-Content-Type-Options: nosniff
+  - [x] X-Frame-Options: DENY
+  - [x] X-XSS-Protection: 1; mode=block
+  - [x] Strict-Transport-Security (production only)
+  - [x] Content-Security-Policy
 
 ### B-23: Input Sanitization Middleware
 - **Priority**: P1
 - **Description**: Sanitize all incoming request data
 - **Acceptance Criteria**:
-  - [ ] `internal/middleware/sanitize.go`
-  - [ ] Trim whitespace from string fields
-  - [ ] Strip HTML tags from text fields
-  - [ ] Max length enforcement
+  - [x] `internal/middleware/sanitize.go`
+  - [x] Trim whitespace from string fields
+  - [x] Strip HTML tags from text fields
+  - [x] Max length enforcement
 
 ### B-24: Request Logger Middleware
 - **Priority**: P1
 - **Description**: Structured request/response logging
 - **Acceptance Criteria**:
-  - [ ] `internal/middleware/logger.go`
-  - [ ] Log method, path, status, latency, request ID
-  - [ ] JSON structured logs
-  - [ ] No sensitive data in logs (no tokens, no passwords)
+  - [x] `internal/middleware/logger.go`
+  - [x] Log method, path, status, latency, request ID
+  - [x] JSON structured logs
+  - [x] No sensitive data in logs (no tokens, no passwords)
 
 ### B-25: Route Registration
 - **Priority**: P0
 - **Description**: Register all routes in main.go with middleware groups
 - **Acceptance Criteria**:
-  - [ ] Public group: `/api/menus`, `/api/contacts`, `/api/health`
-  - [ ] Admin group: `/api/admin/*` with auth + idempotency middleware
-  - [ ] Global middleware: CORS, rate limit, security headers, logger, sanitize
+  - [x] Public group: `/api/menus`, `/api/contacts`, `/api/health`
+  - [x] Admin group: `/api/admin/*` with auth + idempotency middleware
+  - [x] Global middleware: CORS, rate limit, security headers, logger, sanitize
 
 ---
 
