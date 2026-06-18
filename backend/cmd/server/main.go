@@ -17,6 +17,7 @@ import (
 	"github.com/navishabakery/backend/internal/database"
 	"github.com/navishabakery/backend/internal/domain/admin"
 	"github.com/navishabakery/backend/internal/domain/auth"
+	contactDomain "github.com/navishabakery/backend/internal/domain/contact"
 	menuDomain "github.com/navishabakery/backend/internal/domain/menu"
 	appMiddleware "github.com/navishabakery/backend/internal/middleware"
 )
@@ -66,14 +67,17 @@ func main() {
 	// Initialize repositories
 	adminRepo := admin.NewRepository(db)
 	menuRepo := menuDomain.NewRepository(db)
+	contactRepo := contactDomain.NewRepository(db)
 
 	// Initialize services
 	authService := auth.NewService(adminRepo, cfg)
 	menuService := menuDomain.NewService(menuRepo)
+	contactService := contactDomain.NewService(contactRepo)
 
 	// Initialize handlers
 	authHandler := auth.NewHandler(authService)
 	menuHandler := menuDomain.NewHandler(menuService)
+	contactHandler := contactDomain.NewHandler(contactService)
 
 	// Health check
 	e.GET("/api/health", func(c echo.Context) error {
@@ -105,6 +109,18 @@ func main() {
 	adminMenuGroup.PUT("/:id", menuHandler.Update)
 	adminMenuGroup.DELETE("/:id", menuHandler.Delete)
 	adminMenuGroup.GET("/count", menuHandler.Count)
+
+	// Public contact route
+	e.POST("/api/contacts", contactHandler.Create)
+
+	// Admin contact routes (protected)
+	adminContactGroup := e.Group("/api/admin/contacts")
+	adminContactGroup.Use(adminAuth)
+	adminContactGroup.GET("", contactHandler.List)
+	adminContactGroup.GET("/:id", contactHandler.FindByID)
+	adminContactGroup.PATCH("/:id/read", contactHandler.MarkAsRead)
+	adminContactGroup.PATCH("/:id/unread", contactHandler.MarkAsUnread)
+	adminContactGroup.DELETE("/:id", contactHandler.Delete)
 
 	_ = cacheStore
 

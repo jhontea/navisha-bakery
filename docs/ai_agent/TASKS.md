@@ -235,50 +235,50 @@
 - **Priority**: P1
 - **Description**: Contact form model and DTOs
 - **Acceptance Criteria**:
-  - [ ] `internal/domain/contact/model.go`
-  - [ ] `internal/domain/contact/dto.go`
-  - [ ] Validation: name, email, message required; phone optional
+  - [x] `internal/domain/contact/model.go`
+  - [x] `internal/domain/contact/dto.go`
+  - [x] Validation: name, email, message required; phone optional
 
 ### B-15: Contact Repository
 - **Priority**: P1
 - **Description**: Contact database operations
 - **Acceptance Criteria**:
-  - [ ] `internal/domain/contact/repository.go`
-  - [ ] `Create(contact)` — with submission_hash
-  - [ ] `FindByHashWithinTime(hash, window)` — duplicate detection
-  - [ ] `List(page, limit)` — admin list
-  - [ ] `FindByID(id)` — single inquiry
-  - [ ] `MarkAsRead(id)` / `MarkAsUnread(id)`
-  - [ ] `Delete(id)`
+  - [x] `internal/domain/contact/repository.go`
+  - [x] `Create(contact)` — with submission_hash
+  - [x] `FindByHashWithinTime(hash, window)` — duplicate detection
+  - [x] `List(page, limit)` — admin list
+  - [x] `FindByID(id)` — single inquiry
+  - [x] `MarkAsRead(id)` / `MarkAsUnread(id)`
+  - [x] `Delete(id)`
 
 ### B-16: SHA-256 Hash Package
 - **Priority**: P1
 - **Description**: Hashing utility for contact deduplication
 - **Acceptance Criteria**:
-  - [ ] `internal/pkg/hash/hash.go`
-  - [ ] `SHA256(input string) string` — returns hex-encoded hash
-  - [ ] Used to hash: email + phone + message
+  - [x] `internal/pkg/hash/hash.go`
+  - [x] `SHA256(input string) string` — returns hex-encoded hash
+  - [x] Used to hash: email + phone + message
 
 ### B-17: Contact Service
 - **Priority**: P1
 - **Description**: Contact form business logic with duplicate prevention
 - **Acceptance Criteria**:
-  - [ ] `internal/domain/contact/service.go`
-  - [ ] Generate submission hash from email+phone+message
-  - [ ] Check for duplicates within `duplicate_window` (5 min from config.yaml)
-  - [ ] If duplicate → return error DUPLICATE_SUBMISSION
-  - [ ] If new → save to database
+  - [x] `internal/domain/contact/service.go`
+  - [x] Generate submission hash from email+phone+message
+  - [x] Check for duplicates within `duplicate_window` (5 min from config.yaml)
+  - [x] If duplicate → return error DUPLICATE_SUBMISSION
+  - [x] If new → save to database
 
 ### B-18: Contact Handlers
 - **Priority**: P1
 - **Description**: Contact HTTP endpoints
 - **Acceptance Criteria**:
-  - [ ] `internal/domain/contact/handler.go`
-  - [ ] `POST /api/contacts` — public, rate-limited (5/5min per IP)
-  - [ ] `GET /api/admin/contacts` — admin only
-  - [ ] `GET /api/admin/contacts/:id` — admin only
-  - [ ] `PATCH /api/admin/contacts/:id/read` — admin only, with idempotency
-  - [ ] `DELETE /api/admin/contacts/:id` — admin only, with idempotency
+  - [x] `internal/domain/contact/handler.go`
+  - [x] `POST /api/contacts` — public, rate-limited (5/5min per IP)
+  - [x] `GET /api/admin/contacts` — admin only
+  - [x] `GET /api/admin/contacts/:id` — admin only
+  - [x] `PATCH /api/admin/contacts/:id/read` — admin only, with idempotency
+  - [x] `DELETE /api/admin/contacts/:id` — admin only, with idempotency
 
 ---
 
