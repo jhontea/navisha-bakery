@@ -17,6 +17,7 @@ import (
 	"github.com/navishabakery/backend/internal/database"
 	"github.com/navishabakery/backend/internal/domain/admin"
 	"github.com/navishabakery/backend/internal/domain/auth"
+	menuDomain "github.com/navishabakery/backend/internal/domain/menu"
 	appMiddleware "github.com/navishabakery/backend/internal/middleware"
 )
 
@@ -62,14 +63,17 @@ func main() {
 		AllowCredentials: cfg.CORS.AllowCredentials,
 	}))
 
-	// Initialize repositories (interfaces)
+	// Initialize repositories
 	adminRepo := admin.NewRepository(db)
+	menuRepo := menuDomain.NewRepository(db)
 
 	// Initialize services
 	authService := auth.NewService(adminRepo, cfg)
+	menuService := menuDomain.NewService(menuRepo)
 
 	// Initialize handlers
 	authHandler := auth.NewHandler(authService)
+	menuHandler := menuDomain.NewHandler(menuService)
 
 	// Health check
 	e.GET("/api/health", func(c echo.Context) error {
@@ -88,6 +92,19 @@ func main() {
 	authGroup.GET("/google/callback", authHandler.AdminLoginCallback)
 	authGroup.GET("/me", authHandler.AdminMe, adminAuth)
 	authGroup.POST("/logout", authHandler.AdminLogout, adminAuth)
+
+	// Public menu routes
+	e.GET("/api/menus", menuHandler.List)
+	e.GET("/api/menus/:id", menuHandler.FindByID)
+	e.GET("/api/menus/featured", menuHandler.ListFeatured)
+
+	// Admin menu routes (protected)
+	adminMenuGroup := e.Group("/api/admin/menus")
+	adminMenuGroup.Use(adminAuth)
+	adminMenuGroup.POST("", menuHandler.Create)
+	adminMenuGroup.PUT("/:id", menuHandler.Update)
+	adminMenuGroup.DELETE("/:id", menuHandler.Delete)
+	adminMenuGroup.GET("/count", menuHandler.Count)
 
 	_ = cacheStore
 

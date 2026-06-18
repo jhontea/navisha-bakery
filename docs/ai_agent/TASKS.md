@@ -168,64 +168,64 @@
 - **Priority**: P0
 - **Description**: Define menu categories as Go constants
 - **Acceptance Criteria**:
-  - [ ] `internal/domain/menu/constants.go`
-  - [ ] Constants: `Food`, `Beverage`, `Cake`, `Pastry`, `Bread`
-  - [ ] Helper functions: `IsValidCategory(string) bool`, `AllCategories() []string`
-  - [ ] Categories match `config.yaml` menu.categories
+  - [x] `internal/domain/menu/constants.go`
+  - [x] Constants: `Food`, `Beverage`, `Cake`, `Pastry`, `Bread`
+  - [x] Helper functions: `IsValidCategory(string) bool`, `AllCategories() []string`
+  - [x] Categories match `config.yaml` menu.categories
 
 ### B-09: Menu Domain — Model & DTO
 - **Priority**: P0
 - **Description**: Menu model and DTOs
 - **Acceptance Criteria**:
-  - [ ] `internal/domain/menu/model.go` — Menu struct (category as string)
-  - [ ] `internal/domain/menu/dto.go` — CreateMenuRequest, UpdateMenuRequest, MenuResponse, MenuListResponse
-  - [ ] Validation: name required, price > 0, category in allowed list, discount 0-100
-  - [ ] Auto-calculate `discount_price` if discount provided and discount_price not set
+  - [x] `internal/domain/menu/model.go` — Menu struct (category as string)
+  - [x] `internal/domain/menu/dto.go` — CreateMenuRequest, UpdateMenuRequest, MenuResponse, MenuListResponse
+  - [x] Validation: name required, price > 0, category in allowed list, discount 0-100
+  - [x] Auto-calculate `discount_price` if discount provided and discount_price not set
 
 ### B-10: Menu Repository
 - **Priority**: P0
 - **Description**: Menu database operations
 - **Acceptance Criteria**:
-  - [ ] `internal/domain/menu/repository.go`
-  - [ ] `List(category, available, page, limit)` — with filtering and pagination
-  - [ ] `FindByID(id)` — single menu item
-  - [ ] `ListFeatured(limit)` — featured items for landing page
-  - [ ] `Create(menu)` — insert new menu
-  - [ ] `Update(menu)` — update existing menu
-  - [ ] `Delete(id)` — delete menu item
-  - [ ] `Count(category, available)` — for pagination
+  - [x] `internal/domain/menu/repository.go`
+  - [x] `List(category, available, page, limit)` — with filtering and pagination
+  - [x] `FindByID(id)` — single menu item
+  - [x] `ListFeatured(limit)` — featured items for landing page
+  - [x] `Create(menu)` — insert new menu
+  - [x] `Update(menu)` — update existing menu
+  - [x] `Delete(id)` — delete menu item
+  - [x] `Count(category, available)` — for pagination
 
 ### B-11: Menu Service
 - **Priority**: P0
 - **Description**: Menu business logic
 - **Acceptance Criteria**:
-  - [ ] `internal/domain/menu/service.go`
-  - [ ] All CRUD operations with business validation
-  - [ ] Calculate discount_price automatically when discount is set
-  - [ ] Validate category against constants
+  - [x] `internal/domain/menu/service.go`
+  - [x] All CRUD operations with business validation
+  - [x] Calculate discount_price automatically when discount is set
+  - [x] Validate category against constants
 
 ### B-12: Menu Handlers (Public + Admin)
 - **Priority**: P0
 - **Description**: Menu HTTP endpoints
 - **Acceptance Criteria**:
-  - [ ] `internal/domain/menu/handler.go`
-  - [ ] `GET /api/menus` — public, with category filter, pagination
-  - [ ] `GET /api/menus/:id` — public
-  - [ ] `GET /api/menus/featured` — public
-  - [ ] `POST /api/admin/menus` — admin only, with idempotency
-  - [ ] `PUT /api/admin/menus/:id` — admin only, with idempotency
-  - [ ] `DELETE /api/admin/menus/:id` — admin only, with idempotency
+  - [x] `internal/domain/menu/handler.go`
+  - [x] `GET /api/menus` — public, with category filter, pagination
+  - [x] `GET /api/menus/:id` — public
+  - [x] `GET /api/menus/featured` — public
+  - [x] `POST /api/admin/menus` — admin only, with idempotency
+  - [x] `PUT /api/admin/menus/:id` — admin only, with idempotency
+  - [x] `DELETE /api/admin/menus/:id` — admin only, with idempotency
 
 ### B-13: Image Upload Service (Cloudflare R2)
 - **Priority**: P0
 - **Description**: Cloudflare R2 integration for menu image uploads
 - **Acceptance Criteria**:
-  - [ ] `internal/services/image/r2.go`
-  - [ ] Upload file to R2 with path: `menus/{uuid}/{filename}`
-  - [ ] Return public URL + object key
-  - [ ] Delete object by key
-  - [ ] Validate file type (magic bytes) and size (5MB max)
-  - [ ] R2 credentials from .env
+  - [x] `internal/services/image/r2.go`
+  - [x] Upload file to R2 with path: `menus/{uuid}/{filename}`
+  - [x] Return public URL + object key
+  - [x] Delete object by key
+  - [x] Validate file type (magic bytes) and size (5MB max)
+  - [x] R2 credentials from .env
 
 ---
 
