@@ -1,17 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("vibe");
   const pathname = usePathname();
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/#vibe", label: "Menu" },
-    { href: "/#catch-us", label: "Contact" },
+    { href: "/#vibe", label: "The Vibe", sectionId: "vibe" },
+    { href: "/#process", label: "Bakery Goals", sectionId: "process" },
+    { href: "/#catch-us", label: "Find Us", sectionId: "catch-us" },
   ];
 
   const scrollToSection = (href: string) => {
@@ -23,6 +25,37 @@ export default function Navbar() {
       }
     }
   };
+
+  useEffect(() => {
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Find the section with the highest intersection ratio
+            const visibleSections = entries
+              .filter((e) => e.isIntersecting)
+              .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+            if (visibleSections.length > 0) {
+              setActiveSection(visibleSections[0].target.id);
+            }
+          }
+        });
+      },
+      {
+        rootMargin: "-20% 0px -60% 0px",
+        threshold: [0.1, 0.3, 0.5],
+      }
+    );
+
+    const sections = ["vibe", "process", "catch-us"].map((id) => document.getElementById(id)).filter(Boolean);
+    sections.forEach((section) => {
+      if (section) observerRef.current?.observe(section);
+    });
+
+    return () => {
+      observerRef.current?.disconnect();
+    };
+  }, []);
 
   return (
     <header className="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm">
@@ -39,17 +72,13 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               className={`transition-colors duration-200 ${
-                pathname === "/" && link.href !== "/"
-                  ? "text-on-surface-variant hover:text-primary"
-                  : pathname === link.href
-                  ? "text-primary font-bold border-b-2 border-accent-terracotta"
-                  : "text-on-surface-variant hover:text-primary"
+                activeSection === link.sectionId
+                  ? "text-accent-terracotta font-bold border-b-2 border-accent-terracotta pb-1"
+                  : "text-on-surface-variant hover:text-accent-terracotta"
               }`}
               onClick={(e) => {
-                if (link.href.startsWith("/#")) {
-                  e.preventDefault();
-                  scrollToSection(link.href);
-                }
+                e.preventDefault();
+                scrollToSection(link.href);
               }}
             >
               {link.label}
@@ -58,7 +87,7 @@ export default function Navbar() {
         </div>
 
         <div className="hidden md:block">
-          <Link
+          <a
             href="/#catch-us"
             className="bg-primary text-on-primary px-6 py-2 rounded-full font-bold hover:scale-105 transition-transform duration-200 shadow-md"
             onClick={(e) => {
@@ -67,7 +96,7 @@ export default function Navbar() {
             }}
           >
             Order Now
-          </Link>
+          </a>
         </div>
 
         {/* Mobile Menu Button */}
@@ -89,18 +118,14 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               className={`block py-3 px-4 rounded-lg mb-2 ${
-                pathname === link.href
+                activeSection === link.sectionId
                   ? "bg-primary-container text-on-primary-container font-bold"
                   : "text-on-surface-variant hover:bg-surface-container-high"
               }`}
               onClick={(e) => {
-                if (link.href.startsWith("/#")) {
-                  e.preventDefault();
-                  scrollToSection(link.href);
-                  setIsMenuOpen(false);
-                } else {
-                  setIsMenuOpen(false);
-                }
+                e.preventDefault();
+                scrollToSection(link.href);
+                setIsMenuOpen(false);
               }}
             >
               {link.label}

@@ -428,44 +428,44 @@
 - **Priority**: P0
 - **Description**: Main landing page with all sections
 - **Acceptance Criteria**:
-  - [ ] `app/(public)/page.tsx`
-  - [ ] `components/landing/Hero.tsx` — hero banner with tagline and CTA
-  - [ ] `components/landing/About.tsx` — about the bakery section
-  - [ ] `components/landing/FeaturedMenu.tsx` — featured menu items (fetched from API)
-  - [ ] `components/landing/Location.tsx` — address + Google Maps embed
-  - [ ] `components/landing/ContactInfo.tsx` — phone, email, social links
-  - [ ] Responsive on all screen sizes
-  - [ ] SEO meta tags (title, description, OG image)
-  - [ ] Subtle animations with Framer Motion
+  - [x] `app/(public)/page.tsx`
+  - [x] `components/landing/Hero.tsx` — hero banner with tagline and CTA
+  - [x] `components/landing/About.tsx` — about the bakery section
+  - [x] `components/landing/FeaturedMenu.tsx` — featured menu items (fetched from API)
+  - [x] `components/landing/Location.tsx` — address + Google Maps embed
+  - [x] `components/landing/ContactInfo.tsx` — phone, email, social links
+  - [x] Responsive on all screen sizes
+  - [x] SEO meta tags (title, description, OG image)
+  - [x] Subtle animations with Framer Motion
 
 ### F-07: Menu Page
 - **Priority**: P0
 - **Description**: Dedicated menu listing page with category filtering
 - **Acceptance Criteria**:
-  - [ ] `app/(public)/menu/page.tsx`
-  - [ ] `components/menu/CategoryFilter.tsx` — horizontal scrollable category tabs
-  - [ ] `components/menu/MenuGrid.tsx` — responsive grid of menu cards
-  - [ ] `components/menu/MenuCard.tsx` — image, name, description, price, category badge
-  - [ ] `components/menu/PriceDisplay.tsx` — shows original price (strikethrough) + discount price
-  - [ ] Category filtering (All, Food, Beverage, Cake, Pastry, Bread)
-  - [ ] Lazy loading on images
-  - [ ] Loading skeleton while fetching
-  - [ ] Empty state when no items in category
-  - [ ] Pagination (if > 20 items)
+  - [x] `app/(public)/menu/page.tsx`
+  - [x] `components/menu/CategoryFilter.tsx` — horizontal scrollable category tabs
+  - [x] `components/menu/MenuGrid.tsx` — responsive grid of menu cards
+  - [x] `components/menu/MenuCard.tsx` — image, name, description, price, category badge
+  - [x] `components/menu/PriceDisplay.tsx` — shows original price (strikethrough) + discount price
+  - [x] Category filtering (All, Food, Beverage, Cake, Pastry, Bread)
+  - [x] Lazy loading on images
+  - [x] Loading skeleton while fetching
+  - [x] Empty state when no items in category
+  - [x] Pagination (if > 20 items)
 
 ### F-08: Contact Us Page
 - **Priority**: P1
 - **Description**: Contact form and bakery information
 - **Acceptance Criteria**:
-  - [ ] `app/(public)/contact/page.tsx`
-  - [ ] `components/contact/ContactForm.tsx` — name, email, phone, message fields
-  - [ ] `components/contact/MapEmbed.tsx` — Google Maps iframe
-  - [ ] `components/contact/OperatingHours.tsx` — business hours display
-  - [ ] Client-side validation with react-hook-form + zod
-  - [ ] Server-side validation error display
-  - [ ] Success toast after submission
-  - [ ] Duplicate submission error handling (429 → friendly message)
-  - [ ] Form reset after successful submission
+  - [x] `app/(public)/contact/page.tsx`
+  - [x] `components/contact/ContactForm.tsx` — name, email, phone, message fields
+  - [x] `components/contact/MapEmbed.tsx` — Google Maps iframe
+  - [x] `components/contact/OperatingHours.tsx` — business hours display
+  - [x] Client-side validation with react-hook-form + zod
+  - [x] Server-side validation error display
+  - [x] Success toast after submission
+  - [x] Duplicate submission error handling (429 → friendly message)
+  - [x] Form reset after successful submission
 
 ---
 
