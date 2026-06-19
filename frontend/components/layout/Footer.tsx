@@ -7,7 +7,11 @@ export default function Footer() {
         <div className="flex flex-col items-center gap-8">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <span className="text-3xl">🥐</span>
+            <div className="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center">
+              <span className="material-symbols-outlined text-on-primary-container" style={{ fontVariationSettings: "'FILL' 1", fontSize: "24px" }}>
+                bakery_dining
+              </span>
+            </div>
             <span className="font-headline-lg text-headline-lg text-primary">
               Navisha Bakery
             </span>

@@ -1,0 +1,334 @@
+<!DOCTYPE html><html class="light" lang="id" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Menu | Navisha Bakery</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=Playfair+Display:wght@700;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#274027",
+                    "surface-container-high": "#eee7e3",
+                    "surface-variant": "#e8e1dd",
+                    "inverse-surface": "#33302d",
+                    "surface-tint": "#725a42",
+                    "on-tertiary-container": "#8fac8c",
+                    "on-background": "#1e1b19",
+                    "on-surface": "#1e1b19",
+                    "surface-container": "#f4ece9",
+                    "secondary": "#5f5e5b",
+                    "primary-container": "#4b3621",
+                    "on-secondary-container": "#656461",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#e5e2dd",
+                    "background": "#fff8f5",
+                    "outline-variant": "#d2c4ba",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#59422c",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#f7efeb",
+                    "surface-dim": "#e0d9d5",
+                    "secondary-fixed-dim": "#c9c6c2",
+                    "surface-bright": "#fff8f5",
+                    "secondary-fixed": "#e5e2dd",
+                    "outline": "#80756c",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#e1c1a4",
+                    "on-tertiary-fixed-variant": "#334d33",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed-dim": "#b0cfad",
+                    "on-secondary": "#ffffff",
+                    "inverse-primary": "#e1c1a4",
+                    "on-secondary-fixed": "#1c1c19",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed-variant": "#474743",
+                    "on-primary-container": "#bd9f83",
+                    "tertiary": "#112a13",
+                    "error-container": "#ffdad6",
+                    "on-surface-variant": "#4e453d",
+                    "primary": "#33210d",
+                    "primary-fixed": "#fedcbe",
+                    "surface-container-highest": "#e8e1dd",
+                    "surface": "#fff8f5",
+                    "surface-container-low": "#faf2ee",
+                    "on-primary-fixed": "#291806",
+                    "tertiary-fixed": "#ccebc7",
+                    "on-tertiary-fixed": "#07200b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "overlap-sm": "-24px",
+                    "unit": "4px",
+                    "overlap-md": "-48px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Playfair Display"],
+                    "headline-lg-mobile": ["Playfair Display"],
+                    "display-xl-mobile": ["Playfair Display"],
+                    "body-lg": ["Inter"],
+                    "display-xl": ["Playfair Display"],
+                    "label-caps": ["Inter"],
+                    "body-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.03em", "fontWeight": "900"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "display-xl": ["84px", {"lineHeight": "90px", "letterSpacing": "-0.04em", "fontWeight": "900"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 248, 245, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(128, 117, 108, 0.1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-filter {
+            background-color: #33210d;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-lg overflow-x-hidden selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<nav class="sticky top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/10 shadow-sm">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 w-full max-w-7xl mx-auto">
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-black text-primary">Navisha Bakery</span>
+<div class="hidden md:flex items-center gap-8">
+
+
+
+
+</div>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-bold hover:scale-105 active:scale-95 transition-all">
+                Order Now
+            </button>
+</div>
+</nav>
+<main class="relative">
+<!-- Background Decorations -->
+<div class="absolute top-20 right-0 w-48 opacity-10 pointer-events-none -rotate-12">
+<img class="w-full h-auto" src="https://lh3.googleusercontent.com/aida/AP1WRLvDbqdCOTKvt0Qq9IsG6gEtAua8thUtr_b1rsmIde5l1CKTt9n0NZnZssT6wg6Mf034v7uMmyaT2EDrC-l80Eoap4gQF3qcFMeyGM4BkKCO_3xba2_hsTjNT3lazD59byWhuYkAYpShzUCZ0HJJqXZgIZ6NPtOawvLy-UJ1oqJtWKCtA4uOitXA6oGWw0qy-Eh2MEJxLkbywfaKbaEPlp94y1Y3jgMkVL7-bF-s43yL9b_z-bGaRgroxpzZ">
+</div>
+<div class="absolute bottom-40 left-0 w-64 opacity-5 pointer-events-none rotate-45">
+<img class="w-full h-auto" src="https://lh3.googleusercontent.com/aida/AP1WRLvDbqdCOTKvt0Qq9IsG6gEtAua8thUtr_b1rsmIde5l1CKTt9n0NZnZssT6wg6Mf034v7uMmyaT2EDrC-l80Eoap4gQF3qcFMeyGM4BkKCO_3xba2_hsTjNT3lazD59byWhuYkAYpShzUCZ0HJJqXZgIZ6NPtOawvLy-UJ1oqJtWKCtA4uOitXA6oGWw0qy-Eh2MEJxLkbywfaKbaEPlp94y1Y3jgMkVL7-bF-s43yL9b_z-bGaRgroxpzZ">
+</div>
+<!-- Hero Section -->
+<header class="relative pt-16 pb-12 px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12 overflow-visible">
+<div class="flex-1 space-y-4">
+<div class="inline-block px-4 py-1 bg-primary-fixed text-on-primary-fixed font-label-caps text-label-caps rounded-full mb-2">
+                    FRESH FROM THE OVEN
+                </div>
+<h1 class="font-display-xl-mobile md:font-display-xl text-display-xl-mobile md:text-display-xl text-primary leading-tight">
+                    Jelajahi Semua Suguhan
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                    Dibuat dengan cinta, dinikmati dengan getaran positif. Temukan favorit barumu di koleksi curated kami.
+                </p>
+</div>
+<!-- Hero Illustration Placeholder representing Cheerful Croissant -->
+<div class="relative w-full max-w-sm md:max-w-md aspect-square flex items-center justify-center">
+<div class="absolute inset-0 bg-secondary-container rounded-full blur-3xl opacity-30"></div>
+<!-- Simulating IMAGE_12 as requested via prompt-like image -->
+
+</div>
+</header>
+<!-- Category Filter -->
+<section class="sticky top-[80px] z-40 bg-background/95 backdrop-blur-md py-6 px-margin-mobile md:px-margin-desktop border-b border-outline-variant/10">
+<div class="max-w-7xl mx-auto overflow-x-auto no-scrollbar flex items-center gap-4">
+<button class="active-filter px-8 py-3 rounded-full font-bold whitespace-nowrap transition-all shadow-sm">All</button>
+<button class="bg-surface-container-high text-on-surface-variant hover:bg-outline-variant/30 px-8 py-3 rounded-full font-bold whitespace-nowrap transition-all">Bread</button>
+<button class="bg-surface-container-high text-on-surface-variant hover:bg-outline-variant/30 px-8 py-3 rounded-full font-bold whitespace-nowrap transition-all">Pastry</button>
+<button class="bg-surface-container-high text-on-surface-variant hover:bg-outline-variant/30 px-8 py-3 rounded-full font-bold whitespace-nowrap transition-all">Cake</button>
+<button class="bg-surface-container-high text-on-surface-variant hover:bg-outline-variant/30 px-8 py-3 rounded-full font-bold whitespace-nowrap transition-all">Beverage</button>
+</div>
+</section>
+<!-- Menu Grid -->
+<section class="py-16 px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-gutter gap-y-12">
+<!-- Menu Item 1 -->
+<div class="group glass-card rounded-2xl overflow-hidden flex flex-col hover:shadow-lg transition-all duration-300">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="High-end editorial food photography of a Matcha Croissant with vibrant green glaze and delicate gold flakes. The pastry is set on a minimalist ceramic plate with soft side lighting that highlights its flaky texture. The aesthetic is clean, professional, and sophisticated, utilizing a palette of matcha green and warm cream." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6-ZZXV4haJcEhEIkRWRtIPO_7_OaZxxSQXQt1ZdRVh3yjkRCT9TDZJ02gzXGtcBP90LNT2Iq8PoN3s6jXM9AxTDzokXysE80lBDkg2Uslu3zQGf5iam1AJGxSHkZ6ykI0zg5RPySu-31URmgwTF2f98NH14_ohsAFGto9tqNiTEKS_3lDs60uNo8ah3ZRG1wCYOfvji90_aXnEPopb19fNyEzCsbA-K-5m7FAdDrW6sDDTBFYwM8muNBdIelpp9GBKXfAsbB9dx8-">
+<div class="absolute top-4 left-4 bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full font-label-caps text-label-caps">BEST SELLER</div>
+</div>
+<div class="p-6 flex flex-col flex-1 gap-2">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Matcha Croissant</h3>
+<span class="font-bold text-primary">Rp 45.000</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                            Laminasi sempurna dengan isian krim matcha premium dari Uji, Jepang. Tekstur renyah di luar, lembut di dalam.
+                        </p>
+<div class="mt-auto pt-4 flex justify-between items-center">
+<span class="text-error font-body-sm line-through opacity-50">Rp 55.000</span>
+<button class="bg-primary text-on-primary w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Menu Item 2 -->
+<div class="group glass-card rounded-2xl overflow-hidden flex flex-col hover:shadow-lg transition-all duration-300">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A dreamy Strawberry Cloud cake, featuring layers of light vanilla sponge, fresh strawberry compote, and whipped mascarpone cream. The cake is decorated with fresh berries and organic edible flowers. Shot in a high-key, airy studio environment with soft shadows and a romantic, aesthetic vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvNhV6uW956YYE1uKb0HrG0_0-QiyR-9gnWWLzwj2arecnUESc6wuEWeFzfmdHmUlAZrBbUhIX6EgQVy55B_03be6CLP8YBpqk7FdFDa2jBhFcoVAxYUUdPy_AmOsh2Hn9voJ8upgpP9BkzxX2gluQoxeC12sjSwbxjOyh8JAgqEwCiGhJOa2B2z9F43RepSqWcrZndhBZnQzKmq9Bq-qJ60dqCHdlYdg57qbigsgj-mKPtd_BGni_0e50CgD50gMAcRW4OXLwy1jr">
+</div>
+<div class="p-6 flex flex-col flex-1 gap-2">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Strawberry Cloud</h3>
+<span class="font-bold text-primary">Rp 52.000</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                            Kue spons ringan dengan mascarpone lembut dan stroberi segar pilihan. Manis yang pas untuk sore harimu.
+                        </p>
+<div class="mt-auto pt-4 flex justify-end items-center">
+<button class="bg-primary text-on-primary w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Menu Item 3 (Beverage) -->
+<div class="group glass-card rounded-2xl overflow-hidden flex flex-col hover:shadow-lg transition-all duration-300 lg:translate-y-6">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="An iced vanilla latte in a modern glass tumbler, showing beautiful coffee swirls and condensation on the glass. The background is a clean, minimal cafe setting with a focus on warm wood and soft terracotta tones. Professional lighting captures the refreshing nature of the drink." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyrorRbMRrjxvc8zvGD0fpRr_yUSK5NdQXEmF3ysvZ_kAUfHuBdHqxsjw8tD9GFc91NBw06OhJFUAHAWdn7jObEs525fxCTdWEcGcfG2NIYBnWf64f5EWxc6XWGJt-deVTaJMWHgJZNLtN_TTkrCRiQDzcVN4g_dLM2rM0FVRb2ysujyMf2gdEKu2GSxhCU22wMfCb1EZ0sKc3jZJRgMNKQtCFTPRvAIz0eloGQTqB22AdUyVlLX2eFkgpw8aLhfz35gnr0K3ZqvbH">
+</div>
+<div class="p-6 flex flex-col flex-1 gap-2">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Iced Vanilla Latte</h3>
+<span class="font-bold text-primary">Rp 38.000</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                            Espresso blend Arabica dengan susu creamy dan sirup vanila artisan. Teman setia di segala suasana.
+                        </p>
+<div class="mt-auto pt-4 flex justify-end items-center">
+<button class="bg-primary text-on-primary w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Menu Item 4 -->
+<div class="group glass-card rounded-2xl overflow-hidden flex flex-col hover:shadow-lg transition-all duration-300 lg:-translate-y-6">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A close-up shot of a sourdough bread loaf with a perfectly charred, artisanal crust. The bread is dusted with flour and has a rustic, handwritten-style bakery logo stamped nearby. The aesthetic is warm, authentic, and focuses on high-quality ingredients and traditional techniques." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBY2QS-dxhesfKYq_svizIH-xhIfr4V6KSoI1u5cMnY1_W5N-gIiUtHLBTHdpp2OuBNEP-yr-MxLyqpqXlrhj2vb3AiopFiwDxSnfYm1YOlAql6-EttN1k2S9dIizl0OSh4Hb7pXvQVZk7UVi2WGX9sM68XTKpM6vEGwuLLnbcdWIDY6THP0GeNzCUZ8-tyCcmFmMpaVmFKZjU7e2W5eFFmX_IX7oM47DJV0bBl4XkAQJNPZSIOsitcGdjO8rjRiaFmdGwJHIBPJBDM">
+</div>
+<div class="p-6 flex flex-col flex-1 gap-2">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Classic Sourdough</h3>
+<span class="font-bold text-primary">Rp 65.000</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                            Fermentasi alami 24 jam untuk rasa asam yang khas dan tekstur crusty yang otentik.
+                        </p>
+<div class="mt-auto pt-4 flex justify-end items-center">
+<button class="bg-primary text-on-primary w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Menu Item 5 -->
+<div class="group glass-card rounded-2xl overflow-hidden flex flex-col hover:shadow-lg transition-all duration-300">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A decadent dark chocolate tart with a shiny ganache topping and sea salt sprinkles. The dessert is presented on a minimalist black stone platter, reflecting a sophisticated and moody aesthetic. The lighting is focused and dramatic, highlighting the rich chocolate texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4pjS07MMDoMn01lYlgx2Rd9sBJ3w-xfrqK0fp7gUWitLuxKfMDSoEXS08veurvcFheusZOY1x7jJYIxv0RkST6SP7RExoZaSSVkn5sV0Vw4z_W4ZrMmVQnv8BxPAOTjpmE83smiZPiUsOl6vnmDjtdVEIPYiPhDe4NGX41RNetCG63dWK0dIC3gP9b5yttyXFJi9lQHELpCE0EgdnRjNCjLbwtUAHcOVMtd3Ee7GuHVFvyzSIoJUECZCSh17NeAdVbiNLBSN5u7zn">
+</div>
+<div class="p-6 flex flex-col flex-1 gap-2">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Dark Choco Tart</h3>
+<span class="font-bold text-primary">Rp 48.000</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                            Ganache cokelat hitam 70% dengan taburan sea salt. Mewah di setiap gigitan.
+                        </p>
+<div class="mt-auto pt-4 flex justify-end items-center">
+<button class="bg-primary text-on-primary w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Menu Item 6 -->
+<div class="group glass-card rounded-2xl overflow-hidden flex flex-col hover:shadow-lg transition-all duration-300">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A collection of colorful French Macarons in a minimalist white gift box. The colors are muted pastels - rose, pistachio, and lavender. The photography is clean and editorial, emphasizing the delicate and artisanal nature of these sweet treats." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqCtRuSJE9BNs-oxD4wy2SuLi5sGrBCIQLIaLjyrLhYfog4fzEgkXz866UJWviWw5UDOjbSExBuBMuZPmTIhdjLy-HPTy2pqvqADrNQ9GKcr6qXlqFOCiEYtYCjnpGvqUfAhEPzWIia8SPO3BDMuzAVThr1L09vHjUPT6zyUHsQ-d46H346EaX8FqpNyOo_pJ9qkiD13_wLaPYRyCjzlbX7IoRQvPYFdw9XNc_kqFWeud1HOoqHyC0D0S8Ade5HT4nE4QGFQTSuGWS">
+</div>
+<div class="p-6 flex flex-col flex-1 gap-2">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Pastel Macarons</h3>
+<span class="font-bold text-primary">Rp 18.000</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                            Pilihan rasa artisan yang berubah setiap minggunya. Harga per satuan.
+                        </p>
+<div class="mt-auto pt-4 flex justify-end items-center">
+<button class="bg-primary text-on-primary w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Decorative Coffee Illustration -->
+<div class="flex justify-center py-12 opacity-40">
+<div class="w-32 h-32 rotate-12">
+<!-- Simulating Coffee Cup Illustration -->
+
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest w-full py-12 border-t border-outline-variant/20">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop gap-gutter w-full max-w-7xl mx-auto">
+<div class="flex flex-col items-center md:items-start gap-4">
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Navisha Bakery</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 Navisha Bakery. Stay Sweet.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-opacity duration-300" href="#">Instagram</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-opacity duration-300" href="#">TikTok</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-opacity duration-300" href="#">Pinterest</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-opacity duration-300" href="#">Contact</a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for category filters
+        const buttons = document.querySelectorAll('section.sticky button');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                buttons.forEach(b => {
+                    b.classList.remove('active-filter', 'shadow-sm');
+                    b.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+                });
+                btn.classList.add('active-filter', 'shadow-sm');
+                btn.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+            });
+        });
+    </script>
+
+
+</body></html>

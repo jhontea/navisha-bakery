@@ -33,22 +33,20 @@ export default function LoginPage() {
   });
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      {/* Decorative Elements */}
+    <div className="flex items-center justify-center min-h-screen bg-surface-container-low">
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary-fixed opacity-20 blur-3xl rounded-full" />
         <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-secondary-fixed-dim opacity-10 blur-3xl rounded-full" />
       </div>
 
-      {/* Login Card */}
-      <main className="relative w-full max-w-md px-6 animate-rise">
+      <main className="relative w-full max-w-md px-6">
         {/* Branding Header */}
         <div className="flex flex-col items-center mb-8">
           <div className="w-24 h-24 mb-6 rounded-full bg-surface-card shadow-sm flex items-center justify-center overflow-hidden border-4 border-surface-container transition-transform duration-500 hover:rotate-6">
             <img
               alt="Navisha Bakery Logo"
               className="w-20 h-20 object-contain"
-              src="https://lh3.googleusercontent.com/aida/AP1WRLsstEkjypN0gH1SyZghbtR9gVbByURakG9K8ouRlC-53ahANtnoaw4yw5mSeGxdjjBnIdfekDm73W2mAmbtVJRJyQhTiUrZNATp6TFjOn_kFQU1LnKd7rNpVEqb61nt5mrV4DvWGFxmW69yAr7Mgfm02pIdmwt58hUnXxTJ-qMOG5IcBCOli95b6u-atNMnvwo35aOx6V6RDxvkur7VWQQYVMQJLqCuMu0CmUTMolxkfvK8yAfSC3oN1zAc"
+              src="https://wauvvdklycrctrznwkkd.supabase.co/storage/v1/object/public/navisha/bakery/icon/Logo%20icon.png"
             />
           </div>
           <h1 className="font-headline-xl text-headline-xl text-primary text-center tracking-tight mb-2">
@@ -59,7 +57,6 @@ export default function LoginPage() {
           </p>
         </div>
 
-        {/* Authentication Card */}
         <div className="bg-surface-card rounded-xl shadow-sm border border-outline-variant/30 p-8 md:p-10 transition-all duration-300 hover:shadow-md">
           <div className="text-center mb-8">
             <h2 className="font-headline-md text-headline-md text-on-surface mb-2">
@@ -71,7 +68,6 @@ export default function LoginPage() {
             </p>
           </div>
 
-          {/* Google OAuth Button */}
           <button
             onClick={() => handleGoogleLogin()}
             disabled={isLoading}
@@ -97,11 +93,10 @@ export default function LoginPage() {
             )}
           </button>
 
-          {/* Security Footer */}
           <div className="mt-8 flex flex-col items-center">
             <div className="flex items-center gap-2 mb-4">
               <div className="h-px w-8 bg-outline-variant" />
-              <span className="material-symbols-outlined text-outline text-lg">lock</span>
+              <span className="material-symbols-outlined" style={{ fontSize: "18px", fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24", color: "var(--color-outline)" }}>lock</span>
               <div className="h-px w-8 bg-outline-variant" />
             </div>
             <div className="bg-surface-container-low rounded-lg p-4 w-full">
@@ -113,22 +108,6 @@ export default function LoginPage() {
             </div>
           </div>
         </div>
-
-        {/* Footer Links */}
-        <footer className="mt-8 text-center">
-          <p className="font-label-sm text-label-sm text-on-surface-variant opacity-60">
-            © {new Date().getFullYear()} Navisha Bakery. All rights reserved.
-          </p>
-          <div className="mt-4 flex justify-center gap-4">
-            <a className="font-label-sm text-label-sm text-primary hover:underline transition-all" href="#">
-              Support
-            </a>
-            <span className="text-outline-variant">•</span>
-            <a className="font-label-sm text-label-sm text-primary hover:underline transition-all" href="#">
-              Privacy Policy
-            </a>
-          </div>
-        </footer>
       </main>
     </div>
   );
