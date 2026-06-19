@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function MobileNav() {
@@ -8,21 +7,37 @@ export default function MobileNav() {
 
   const navItems = [
     { href: "/", icon: "home", label: "Home" },
-    { href: "/menu", icon: "restaurant_menu", label: "Menu" },
-    { href: "/contact", icon: "contact_support", label: "Contact" },
+    { href: "/#vibe", icon: "restaurant_menu", label: "Menu" },
+    { href: "/#catch-us", icon: "contact_support", label: "Contact" },
   ];
+
+  const scrollToSection = (href: string) => {
+    if (href.startsWith("/#")) {
+      const id = href.slice(2);
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   return (
     <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-surface-container-lowest border-t border-outline-variant flex items-center justify-around py-2 px-4 z-50">
       {navItems.map((item) => {
-        const isActive = pathname === item.href;
+        const isActive = pathname === "/" && (item.href === "/#vibe" || item.href === "/#catch-us")
+          ? false
+          : pathname === item.href;
         return (
-          <Link
+          <a
             key={item.href}
             href={item.href}
-            className={`flex flex-col items-center gap-1 p-2 ${
-              isActive ? "text-primary" : "text-on-surface-variant"
-            }`}
+            className={`flex flex-col items-center gap-1 p-2 ${isActive ? "text-primary" : "text-on-surface-variant"}`}
+            onClick={(e) => {
+              if (item.href.startsWith("/#")) {
+                e.preventDefault();
+                scrollToSection(item.href);
+              }
+            }}
           >
             <span
               className="material-symbols-outlined text-2xl"
@@ -35,7 +50,7 @@ export default function MobileNav() {
               {item.icon}
             </span>
             <span className="text-[10px] font-bold">{item.label}</span>
-          </Link>
+          </a>
         );
       })}
     </nav>

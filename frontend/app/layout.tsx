@@ -16,8 +16,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Navisha Bakery | Artisanal Bakery",
-  description: "Handcrafted pastries and breads made with love and aesthetic energy.",
+  title: "Navisha Bakery | Bake it 'til you make it.",
+  description: "Freshly baked aesthetic for your daily vibe. Handcrafted pastries that look as good as they taste.",
 };
 
 export default function RootLayout({
@@ -30,9 +30,22 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${inter.variable} h-full antialiased`}
+      className={`${playfair.variable} ${inter.variable} h-full antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col font-sans">
+      <head>
+        <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+      </head>
+      <body
+        className="min-h-full flex flex-col font-body-lg bg-pattern text-on-background"
+      >
         <GoogleOAuthProvider clientId={googleClientId}>
           {children}
         </GoogleOAuthProvider>

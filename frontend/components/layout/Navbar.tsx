@@ -10,9 +10,19 @@ export default function Navbar() {
 
   const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/menu", label: "Menu" },
-    { href: "/contact", label: "Contact" },
+    { href: "/#vibe", label: "Menu" },
+    { href: "/#catch-us", label: "Contact" },
   ];
+
+  const scrollToSection = (href: string) => {
+    if (href.startsWith("/#")) {
+      const id = href.slice(2);
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   return (
     <header className="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm">
@@ -25,24 +35,36 @@ export default function Navbar() {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8 font-body-md text-body-md">
           {navLinks.map((link) => (
-            <Link
+            <a
               key={link.href}
               href={link.href}
               className={`transition-colors duration-200 ${
-                pathname === link.href
+                pathname === "/" && link.href !== "/"
+                  ? "text-on-surface-variant hover:text-primary"
+                  : pathname === link.href
                   ? "text-primary font-bold border-b-2 border-accent-terracotta"
                   : "text-on-surface-variant hover:text-primary"
               }`}
+              onClick={(e) => {
+                if (link.href.startsWith("/#")) {
+                  e.preventDefault();
+                  scrollToSection(link.href);
+                }
+              }}
             >
               {link.label}
-            </Link>
+            </a>
           ))}
         </div>
 
         <div className="hidden md:block">
           <Link
-            href="/contact"
+            href="/#catch-us"
             className="bg-primary text-on-primary px-6 py-2 rounded-full font-bold hover:scale-105 transition-transform duration-200 shadow-md"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("/#catch-us");
+            }}
           >
             Order Now
           </Link>
@@ -63,7 +85,7 @@ export default function Navbar() {
       {isMenuOpen && (
         <div className="md:hidden bg-surface-card border-t border-outline-variant p-4">
           {navLinks.map((link) => (
-            <Link
+            <a
               key={link.href}
               href={link.href}
               className={`block py-3 px-4 rounded-lg mb-2 ${
@@ -71,18 +93,30 @@ export default function Navbar() {
                   ? "bg-primary-container text-on-primary-container font-bold"
                   : "text-on-surface-variant hover:bg-surface-container-high"
               }`}
-              onClick={() => setIsMenuOpen(false)}
+              onClick={(e) => {
+                if (link.href.startsWith("/#")) {
+                  e.preventDefault();
+                  scrollToSection(link.href);
+                  setIsMenuOpen(false);
+                } else {
+                  setIsMenuOpen(false);
+                }
+              }}
             >
               {link.label}
-            </Link>
+            </a>
           ))}
-          <Link
-            href="/contact"
+          <a
+            href="/#catch-us"
             className="block w-full text-center bg-primary text-on-primary px-6 py-3 rounded-lg font-bold mt-4"
-            onClick={() => setIsMenuOpen(false)}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("/#catch-us");
+              setIsMenuOpen(false);
+            }}
           >
             Order Now
-          </Link>
+          </a>
         </div>
       )}
     </header>
